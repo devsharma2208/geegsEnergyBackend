@@ -24,14 +24,14 @@ const generateAccessAndRefreshTokens = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
-  const { profession, email, username, password } = req.body;
+  const { profession, email, username, password, phone } = req.body;
   console.log(
-    [profession, email, username, password].some(
+    [profession, email, username, password, phone].some(
       (field) => field?.trim() === ""
     )
   );
   if (
-    [profession, email, username, password].some(
+    [profession, email, username, password, phone].some(
       (field) => field?.trim() === ""
     )
   ) {
@@ -50,6 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
     profession,
     email,
     password,
+    phone,
     username: username.toLowerCase(),
   });
 
@@ -114,8 +115,6 @@ const loginUser = asyncHandler(async (req, res) => {
     );
 });
 
-
-
 const updateAccountDetails = asyncHandler(async (req, res) => {
   const { username, email } = req.body;
 
@@ -164,11 +163,10 @@ const deleteUser = asyncHandler(async (req, res) => {
     .json(new ApiResponse(200, null, "User deleted successfully"));
 });
 
-
 export {
   registerUser,
   loginUser,
   updateAccountDetails,
   getAllUsers,
-  deleteUser
+  deleteUser,
 };
