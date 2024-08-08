@@ -116,7 +116,7 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
-  const { username, phone, role } = req.body;
+  const { username, phone, profession } = req.body;
   const { userId } = req.params;
 
   if (!username || !phone) {
@@ -128,8 +128,8 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
     {
       $set: {
         username,
-        phone: phone,
-        role: role,
+        phone,
+        profession,
       },
     },
     { new: true }
