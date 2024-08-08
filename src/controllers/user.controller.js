@@ -162,6 +162,13 @@ const deleteUser = asyncHandler(async (req, res) => {
     .status(200)
     .json(new ApiResponse(200, null, "User deleted successfully"));
 });
+const getCurrentUser = asyncHandler(async (req, res) => {
+  const { userId } = req.params;
+  const user = User.findById({ _id: userId });
+  return res
+    .status(200)
+    .json(new ApiResponse(200, user, "User fetched successfully"));
+});
 
 export {
   registerUser,
@@ -169,4 +176,5 @@ export {
   updateAccountDetails,
   getAllUsers,
   deleteUser,
+  getCurrentUser,
 };
