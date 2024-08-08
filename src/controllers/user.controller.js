@@ -164,7 +164,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 });
 const getCurrentUser = asyncHandler(async (req, res) => {
   const { userId } = req.params;
-  const user = User.findById({ _id: userId });
+  const user = await User.findById({ _id: userId });
   return res
     .status(200)
     .json(new ApiResponse(200, user, "User fetched successfully"));
